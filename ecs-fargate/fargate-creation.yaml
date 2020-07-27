@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Ecs cluster setup using faragate launch type
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: ecs-faragate
+    Description: "sample name to be used for faragate cluster setup"
+
+Resources:
+  EcsCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Sub ${EnvironmentName}
+
+  ContinerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: access to the ecs hosts
+
+Outputs:
+  ClusterName:
+    Description: ecs cluster name
+    Value: !Ref 'EcsCluster'
+
+
+
+
